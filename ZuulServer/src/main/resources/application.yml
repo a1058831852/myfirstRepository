@@ -1,0 +1,90 @@
+server:
+  port: 8090
+#client??????????server?????????????????????
+#instance.appname:???????��?????
+#service-url.defaultZone:?????????????
+  eureka:
+    instance:
+      hostname: localhost
+      client:
+      service-url:
+        defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+#???????
+spring:
+  application:
+    name: microservicecloud-zuul                          #??????????
+
+zuul:
+  #url前置
+ # prefix: /myapi
+  routes:
+    microservicecloud-provider:
+      path: /microservicecloud-provider/**
+      serviceId: microservicecloud-provider
+    microservicecloud-cnsumer:
+      path: /microservicecloud-cnsumer/**
+      serviceId: microservicecloud-cnsumer
+# URL pattern
+# ʹ��·����ʽƥ��·�ɹ���
+# ����key�ṹ�� zuul.routes.customName.path=xxx
+# ��������·��ƥ�����
+# ����customName�Զ��塣ͨ��ʹ��Ҫ���õķ������ƣ�������ڹ���
+# ��ʹ�õ�ͨ����У� * ** ?
+# ? �����ַ�
+# * �������ַ����������༶·��
+# ** �������ַ��������༶·��
+#zuul.routes.eureka-application-service.path=/api/**
+# ����key�ṹ�� zuul.routes.customName.url=xxx
+# url�������÷���path������·��·�ɵ��ķ����ַ��
+#zuul.routes.eureka-application-service.url=http://127.0.0.1:8080/
+#ʹ��url·��ƥ�����
+####################################################################
+# service id pattern ͨ����������·��
+# key�ṹ �� zuul.routes.customName.path=xxx
+# ·��ƥ�����
+#zuul.routes.eureka-application-service.path=/api/**
+# key�ṹ �� zuul.routes.customName.serviceId=xxx
+# serviceId�������÷���path������·��·�ɵ��ķ������ơ�
+#zuul.routes.eureka-application-service.serviceId=eureka-application-service
+#��������ƥ�����
+##############################################################################
+# simple service id pattern �����÷���
+# ���ֻ����path��������serviceId����customName�൱�ڷ������ơ�
+# ����path������·��ֱ��·�ɵ�customName��Ӧ�ķ����ϡ�
+#zuul.routes.eureka-application-service.path=/api/**
+#�������Ƽ����ý���
+################################################################################
+
+
+
+# ignored service id pattern
+# ���ò���zuul����ķ����б������������ʹ�ö���','�ָ���
+# ���õķ��񽫲���zuul����
+#zuul.ignored-services=eureka-application-service
+
+# �˷�ʽ�൱�ڸ������·��ֵķ���Ĭ���ų�zuul���ط��ʷ�ʽ��ֻ��������·�����صķ���ſ���ͨ��zuul���ط���
+# ͨ�䷽ʽ�����ų��б�
+#zuul.ignored-services=*
+# ʹ�÷�������ƥ���������·���б��൱��ֻ�������õķ����ṩ���ش���
+#zuul.routes.eureka-application-service.path=/api/**
+# ͨ�䷽ʽ�����ų����ش���·�������з���ignored-patterns������·��������zuul���ش���
+#zuul.ignored-patterns=/**/test/**
+#zuul.routes.eureka-application-service.path=/api/**
+#·���ų����ý���
+#######################################################################
+
+
+
+
+
+
+
+# prefix URL pattern ǰ׺·��ƥ��
+# ��������·��ǰ׺�����л��ڴ�ǰ׺��������zuul�����ṩ����
+#zuul.prefix=/api
+# ʹ�÷�������ƥ�䷽ʽ��������·������
+# ��������ý�Ϊ��http://ip:port/api/appservice/**�������ṩzuul���ش������Խ�Ҫ���ʷ������ǰ׺���ࡣ
+# ��������·�ɵ�����eureka-application-service�С�
+#zuul.routes.eureka-application-service.path=/appservice/**
+#·��ǰ׺���ý���
+#############################################################################

@@ -1,0 +1,24 @@
+server:
+  port: 8081
+  #client���ͻ��ˣ���server����������ע����������
+  #instance.appname:ָ��ע���е�����
+  #service-url.defaultZone:����ע�����ĵ�ַ
+  eureka:
+    instance:
+      hostname: localhost
+      client:
+      service-url:
+        defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+  #Ӧ������
+spring:
+  application:
+    name: microservicecloud-provider                          #΢���������
+  redis:
+    server: localhost
+    port: 6379
+    ettuce:
+      pool:
+        max-wait: 100000
+        max-idle: 10
+        max-active: 100
+      timeout: 5000

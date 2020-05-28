@@ -1,0 +1,18 @@
+
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    #为false代表不向注册中心注册自己
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+  ##registerWithEureka 和 fetchRegistry 设置为false，表明自己属于服务中心主体
+  ##为什么要用yml文件？而不是xml或properties文件？
+  ##说明:xml或properties文件都是以标签来配置数据，这样就造成了资源的浪费，不利于我
+  ##们开发大型项目，而yml(yaml)文件则取消了这样的配置，文件中都是以数据为中心，层级
+  ##结构以空格作为层级分隔符。使数据得到突出，简化了开发，同时占用的资源也更少。
